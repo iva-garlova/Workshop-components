@@ -1,4 +1,5 @@
 import './App.css';
+import Footer from './components/Footer';
 import Header from './components/Header';
 
 function App() {
@@ -171,10 +172,8 @@ function App() {
         </section>
       </main>
 
-      {/* Footer component */}
-      <footer className="footer">
-        <p>This site is designed to be used for training purposes at SoftUni.</p>
-      </footer>
+      <Footer />
+     
     </>
   );
 }
