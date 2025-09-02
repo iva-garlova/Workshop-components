@@ -1,14 +1,11 @@
 import './App.css';
+import Header from './components/Header';
 
 function App() {
   return (
     <>
-      {/* Header component */}
-      <header className="header">
-        <div className="logo">
-          <span className="course">React Workshop - September 2023</span>
-        </div>
-      </header>
+    
+      <Header />
 
       {/* Main component */}
       <main className="main">
