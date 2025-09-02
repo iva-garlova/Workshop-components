@@ -1,8 +1,18 @@
+import { useEffect } from "react";
 import Pagination from "./Pagination";
 import SearchForm from "./SearchForm";
 import UserListItem from "./UserListItem";
+import userServise from "../services/userServise";
 
 export default function UserList() {
+
+  useEffect(() =>{
+   userServise.getAll()
+   .then(result => {
+    console.log(result);
+    
+   })
+  }, []);
     return (
             <section className="card users-container">
 
