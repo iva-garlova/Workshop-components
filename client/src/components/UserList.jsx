@@ -24,6 +24,19 @@ export default function UserList() {
   const closeCreateUserHandler = () => {
   setShowCreate(false);
   };
+  const saveCreateUserHandler = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const userData = Object.fromEntries(formData);
+
+    const newUser = await userServise.create(userData);
+
+    setUsers(state => [...state, newUser]);
+
+    setShowCreate(false);
+    
+  };
 
 
     return (
@@ -32,7 +45,11 @@ export default function UserList() {
          
          <SearchForm />
 
-        {showCreate &&<UserCreate onClose={closeCreateUserHandler}/>}
+        {showCreate && 
+        <UserCreate 
+        onClose={closeCreateUserHandler}
+        onSave ={saveCreateUserHandler}
+        />}
 
           {/* Table component */}
           <div className="table-wrapper">
