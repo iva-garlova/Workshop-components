@@ -9,6 +9,13 @@ export default {
         return users;
     },
     async create(userdata) {
+
+        const {country, city, street, streetNumber, ...postData} = userdata;
+
+        postData.address = {country, city, street, streetNumber};
+        postData.createdAt= new Date().toISOString();
+        postData.updatedAt = new Date().toISOString()
+       
         const response = await fetch(baseUrl, {
             method: 'POST',
             headers: {
@@ -19,7 +26,7 @@ export default {
         });
 
         const result = await response.json();
-        
+
         return result;
     }
 }

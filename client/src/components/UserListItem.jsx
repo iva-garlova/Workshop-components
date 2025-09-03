@@ -6,6 +6,7 @@ export default function UserListItem({
     email,
     phoneNumber,
     createdAt,
+    updatedAt,
     imageUrl,
 
 }) {
@@ -26,6 +27,8 @@ export default function UserListItem({
                   <td>{email}</td>
                   <td>{phoneNumber}</td>
                   <td>{fromIsoDate(createdAt)}</td>
+                  <td>{fromIsoDate(updatedAt)}</td>
+                  
 
                   <td className="actions">
                     <button className="btn edit-btn" title="Edit">
