@@ -4,10 +4,12 @@ import SearchForm from "./SearchForm";
 import UserListItem from "./UserListItem";
 import userServise from "../services/userServise";
 import UserCreate from "./UserCreate";
+import UserInfo from "./UserInfo";
 
 export default function UserList() {
   const [users, setUsers] = useState([]);
   const [showCreate, setShowCreate] = useState(false);
+  const [userIdInfo, setUserIdInfo] = useState();
 
 
   useEffect(() =>{
@@ -38,6 +40,11 @@ export default function UserList() {
     
   };
 
+  const userInfoClickHandler = (userId) => {
+  setUserIdInfo(userId);
+ 
+  }
+
 
     return (
             <section className="card users-container">
@@ -50,6 +57,12 @@ export default function UserList() {
         onClose={closeCreateUserHandler}
         onSave ={saveCreateUserHandler}
         />}
+
+        {userIdInfo && (
+          <UserInfo
+          userId={userIdInfo}
+          />
+          )}
 
           {/* Table component */}
           <div className="table-wrapper">
@@ -102,6 +115,7 @@ export default function UserList() {
               <tbody>
             {users.map(user => <UserListItem
              key={user._id}
+             onInfoClick={userInfoClickHandler}
               {...user} />)}
               </tbody>
             </table>
