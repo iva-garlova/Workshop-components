@@ -10,6 +10,7 @@ export default function UserListItem({
     updatedAt,
     imageUrl,
     onInfoClick,
+    onDeleteClick,
 
 }) {
    
@@ -36,7 +37,7 @@ export default function UserListItem({
         <button className="btn edit-btn" title="Edit">
           <i className="fa-solid fa-pen-to-square"></i>
         </button>
-        <button className="btn delete-btn" title="Delete">
+        <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(_id)}>
           <i className="fa-solid fa-trash"></i>
         </button>
         <button className="btn info-btn" title="Info" onClick={() => onInfoClick(_id)}>

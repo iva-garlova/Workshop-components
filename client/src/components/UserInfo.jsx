@@ -33,7 +33,7 @@ export default function UserInfo({
                             <p> Full Name: <strong> {user.firstName} {user.lastName}</strong> </p>
                             <p>Email: <strong>{user.email}</strong></p>
                             <p>Phone Number: <strong>{user.phoneNumber}</strong></p>
-                            <p> Address: <strong> {user.country} {user.city} {user.street} {user.streetNumber} </strong> </p>
+                            <p> Address: <strong> {user.adress?.country}, {user.adress?.city}, {user.adress?.street}, {user.adress?.streetNumber} </strong> </p>
                             <p>Created on: <strong>{fromIsoDate(user.createdAt)}</strong></p>
                             <p>Modified on: <strong>{fromIsoDate(user.updatedAt)}</strong></p>
                         </div>
