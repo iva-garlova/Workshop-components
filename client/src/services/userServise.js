@@ -8,6 +8,12 @@ export default {
 
         return users;
     },
+    async getOne(userId) {
+    const response = await fetch(`${baseUrl}/${userId}`);
+    const result = await response.json();
+
+    return result;
+    },
     async create(userdata) {
 
         const {country, city, street, streetNumber, ...postData} = userdata;
