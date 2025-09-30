@@ -27,7 +27,7 @@ export default {
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(userdata),
+            body: JSON.stringify(postData),
 
         });
 
