@@ -12,6 +12,7 @@ export default function UserList() {
   const [showCreate, setShowCreate] = useState(false);
   const [userIdInfo, setUserIdInfo] = useState(null);
   const [userIdDelete, setUserIdDelete] = useState(null);
+  const [userIdEdit, setUserIdEdit] = useState(null);
 
 
   useEffect(() =>{
@@ -27,6 +28,7 @@ export default function UserList() {
   };
   const closeCreateUserHandler = () => {
   setShowCreate(false);
+  setUserIdEdit(null);
   };
   const saveCreateUserHandler = async (e) => {
     e.preventDefault();
@@ -63,9 +65,29 @@ export default function UserList() {
 
    await userServise.delete(userIdDelete);
    setUsers(state => state.filter(user => user._id !== userIdDelete));
+
    setUserIdDelete(null);
 
-  }
+  };
+
+  const userEditClickHandler = (userId) => {
+  setUserIdEdit(userId);
+  };
+
+  const saveEditUserClickHandler = async (e) => {
+
+    const userId = userIdEdit;
+   e.preventDefault();
+
+   const formData = new FormData(e.target);
+   const userData = Object.fromEntries(formData);
+
+   const updatedUser = await userServise.update(userId, userData);
+
+   setUsers(state => state.map(user => user._id === userId ? updatedUser : user))
+
+   setUserIdEdit(null);
+  };
 
 
     return (
@@ -92,6 +114,15 @@ export default function UserList() {
             onClose={userDeleteCloseHandler}
             onDelete={userDeleteHandler}
             />
+        )}
+
+        {userIdEdit && (
+         <UserCreate 
+        onClose={closeCreateUserHandler}
+        onSave ={saveCreateUserHandler}
+        userId={userIdEdit}
+        onEdit={saveEditUserClickHandler}
+          />
         )}
 
           {/* Table component */}
@@ -147,6 +178,7 @@ export default function UserList() {
              key={user._id}
              onInfoClick={userInfoClickHandler}
              onDeleteClick={userDeleteClickHandler}
+             onEditClick={userEditClickHandler}
               {...user} />)}
               </tbody>
             </table>

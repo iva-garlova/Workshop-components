@@ -11,6 +11,7 @@ export default function UserListItem({
     imageUrl,
     onInfoClick,
     onDeleteClick,
+    onEditClick,
 
 }) {
    
@@ -34,7 +35,7 @@ export default function UserListItem({
 
 
       <td className="actions">
-        <button className="btn edit-btn" title="Edit">
+        <button className="btn edit-btn" title="Edit" onClick={() => onEditClick(_id)}>
           <i className="fa-solid fa-pen-to-square"></i>
         </button>
         <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(_id)}>
